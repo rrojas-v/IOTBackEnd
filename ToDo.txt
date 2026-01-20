@@ -1,0 +1,17 @@
+Reglas 
+	alarmas
+		min y max, niveles de operacion aceptables
+		geocercas
+		
+		Mandan un mensaje al usuario
+		crear un mensaje de alerta en la historial base datos registro como evento
+		
+		Conexion con terceros para mandar las alarmas
+			telegram, whatspp, sms, correo
+			twilio, zapier
+		Entradas digitales magnitudes de interruptores (apagado, encendido)
+		salidas digitales 
+			se conectan a las reglas
+			Una alarma puede activar o desactivar una salida digital
+	Reportes
+		En PDF o excel
