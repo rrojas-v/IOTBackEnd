@@ -32,13 +32,11 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-build --output ./publish
     
-    - name: Instalar ssh-agent y agregar clave con passphrase
-      run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_deploy
-          chmod 600 ~/.ssh/id_deploy
-          eval $(ssh-agent -s)
-          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_deploy
+    - name: Instalar ssh-agent y agregar clave
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Deploy vía rsync (el más rápido y confiable)
       run: |
           rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
